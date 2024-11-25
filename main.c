@@ -12,10 +12,8 @@ int main()
 // j =  ft_printf("mine:%p\n", (void *)-14523);
 //     i = printf("orig:%p\n", (void *)-14523);
 
-     char c = 'a';
      int max = 2147483647;
      int min = -2147483648;
-     char *s = "hello";
 //cspdiuxX%
 //   j = printf("%-200\n",s); worked 
 //   j = printf("%maxs\n",s); returned -1
@@ -27,10 +25,16 @@ int main()
 //i = printf("\nft:% 214"); ????????
    //j = printf("\nog:% 21
 
-i= ft_printf("\001\002\007\v\010\f\r\n");
 
 
-j= printf("\001\002\007\v\010\f\r\n");
+char *s = "";
+int d = 0;
+
+j= printf("%#+  d\n", d);
+
+i= ft_printf("%#+  d\n", d);
+
+
      //j = printf("%-16s", "nark nark");
 
 
