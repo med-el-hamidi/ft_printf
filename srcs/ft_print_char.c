@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_print_char_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hami <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 19:54:44 by mel-hami          #+#    #+#             */
-/*   Updated: 2024/11/29 19:54:45 by mel-hami         ###   ########.fr       */
+/*   Created: 2024/11/29 20:06:21 by mel-hami          #+#    #+#             */
+/*   Updated: 2024/11/29 20:06:22 by mel-hami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "srcs.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_print_char(t_flags *flag, char c)
 {
-	if (!s || fd < 0)
-		return ;
-	while (*s)
+	ft_output_length_cntl(1);
+	if (flag->total_width > 1)
 	{
-		ft_putchar_fd(*s++, fd);
+		ft_output_length_cntl(--flag->total_width);
+		if (flag->left_justify)
+		{
+			ft_putchar_fd(c, FD);
+			if (ft_check_ifwrite_failed())
+				return ;
+		}
+		ft_putl_zero_or_space(flag->zero, flag->total_width);
 		if (ft_check_ifwrite_failed())
 			return ;
+		if (!flag->left_justify)
+			ft_putchar_fd(c, FD);
 	}
+	else
+		ft_putchar_fd(c, FD);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-hami <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/29 19:50:20 by mel-hami          #+#    #+#             */
+/*   Updated: 2024/11/29 19:50:22 by mel-hami         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_atoi(const char *str)
@@ -20,13 +32,10 @@ int	ft_atoi(const char *str)
 	{
 		tmp = nbr;
 		nbr = (nbr * 10) + (*str++ - '0');
-		if ((nbr / 10) != tmp)
-		{
-			if (sign == 1)
-				return (-1);
-			else
-				return (0);
-		}
+		if ((nbr / 10) != tmp && sign == 1)
+			return (-1);
+		else if ((nbr / 10) != tmp && sign == -1)
+			return (0);
 	}
 	return (nbr * sign);
 }

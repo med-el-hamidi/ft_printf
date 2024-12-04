@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_nbrlen_base.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-hami <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/29 19:51:13 by mel-hami          #+#    #+#             */
+/*   Updated: 2024/11/29 19:51:57 by mel-hami         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int ft_nbrlen_base(ssize_t  n, unsigned int base)
+int	ft_nbrlen_base(ssize_t n, unsigned int base)
 {
-	int  i;
+	int	i;
 
 	i = 0;
 	if (n <= 0)
