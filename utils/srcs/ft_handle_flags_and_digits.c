@@ -6,7 +6,7 @@
 /*   By: mel-hami <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:02:39 by mel-hami          #+#    #+#             */
-/*   Updated: 2024/12/06 17:00:04 by mel-hami         ###   ########.fr       */
+/*   Updated: 2024/11/30 20:46:26 by mel-hami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 static void	handle_digit(char **str, t_flags *flag);
 static void	handle_flag(char c, t_flags *flag);
 static void	handle_dot(char **str, t_flags *flag);
-static void	_fix_flags(char c, t_flags *flag);
 
 void	ft_handle_flags_and_digits(char **str, t_flags *flag)
 {
 	while (++(*str) && (is_in_set(**str, " #+-0.") || ft_isdigit(**str)))
 	{
-		if (ft_isdigit(**str) && **str != '0')
+		if (ft_isdigit(**str) && !is_in_set(**str, " #+-0."))
 		{
 			handle_digit(str, flag);
 			continue ;
@@ -31,7 +30,6 @@ void	ft_handle_flags_and_digits(char **str, t_flags *flag)
 		else
 			handle_flag(**str, flag);
 	}
-	_fix_flags(**str, flag);
 }
 
 static void	handle_digit(char **str, t_flags *flag)
@@ -42,7 +40,7 @@ static void	handle_digit(char **str, t_flags *flag)
 	if (flag->precision_value)
 		flag->precision_value = value;
 	else
-		flag->field_min_width = value;
+		flag->total_width = value;
 	*str += ft_nbrlen_base(value, 10) - 1;
 }
 
@@ -82,19 +80,6 @@ static void	handle_dot(char **str, t_flags *flag)
 			handle_flag(*(*str + 1), flag);
 		(*str)++;
 	}
-	if (!ft_isdigit(*(*str + 1)) && *(*str + 1) != '.')
+	if (!ft_isdigit(*(*str + 1)) && !is_in_set(*(*str + 1), " #+-0."))
 		flag->precision_value = 0;
-}
-
-static void	_fix_flags(char c, t_flags *flag)
-{
-	if (is_in_set(c, "pdiuxX") && flag->precision)
-	{
-		flag->zero = 0;
-	}
-	if (c == 'u')
-	{
-		flag->plus = 0;
-		flag->space = 0;
-	}
 }

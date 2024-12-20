@@ -46,17 +46,18 @@ static void	_ft_print_str(t_flags *flag, char *str, int length)
 {
 	if (length > 0)
 		ft_output_length_cntl(length);
-	if (flag->field_min_width > length)
+	if (flag->total_width > length)
 	{
-		flag->field_min_width -= length;
-		ft_output_length_cntl(flag->field_min_width);
+		flag->total_width -= length;
+		ft_output_length_cntl(flag->total_width);
 		if (flag->left_justify)
 		{
 			_ft_putlstr(str, length);
 			if (ft_check_ifwrite_failed())
 				return ;
+			flag->zero = 0;
 		}
-		ft_putl_zero_or_space(flag->zero, flag->field_min_width);
+		ft_putl_zero_or_space(flag->zero, flag->total_width);
 		if (ft_check_ifwrite_failed())
 			return ;
 		if (!flag->left_justify)

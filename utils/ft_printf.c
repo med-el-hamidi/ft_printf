@@ -14,6 +14,7 @@
 
 static void	_ft_print_based_on_format(va_list args, t_flags *flag, char c);
 static void	_ft_printf(va_list args, const char *str);
+static void	_fix_flag_zero(t_flags *flag, char c);
 
 int	ft_printf(const char *str, ...)
 {
@@ -26,8 +27,17 @@ int	ft_printf(const char *str, ...)
 	return (ft_output_length_cntl(-2));
 }
 
+static void	_fix_flag_zero(t_flags *flag, char c)
+{
+	if (is_in_set(c, "pdiuxX") && flag->precision)
+	{
+		flag->zero = 0;
+	}
+}
+
 static void	_ft_print_based_on_format(va_list args, t_flags *flag, char c)
 {
+	_fix_flag_zero(flag, c);
 	if (c == '%')
 		ft_print_char(flag, c);
 	else if (is_in_set(c, "cspdiuxX"))
@@ -41,7 +51,11 @@ static void	_ft_print_based_on_format(va_list args, t_flags *flag, char c)
 		else if (c == 'd' || c == 'i')
 			ft_print_decimal(flag, va_arg(args, int));
 		else if (c == 'u')
+		{
+			flag->plus = 0;
+			flag->space = 0;
 			ft_print_decimal(flag, va_arg(args, unsigned int));
+		}
 		else if (c == 'x' || c == 'X')
 			ft_print_hex(flag, c, va_arg(args, unsigned int));
 	}

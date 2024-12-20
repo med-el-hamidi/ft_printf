@@ -23,10 +23,10 @@ void	ft_print_hex(t_flags *flag, char x, ssize_t nbr)
 		length += flag->hash;
 	if (length > 0)
 		ft_output_length_cntl(length);
-	if (flag->total_width > length)
+	if (flag->field_min_width > length)
 	{
-		flag->total_width -= length;
-		ft_output_length_cntl(flag->total_width);
+		flag->field_min_width -= length;
+		ft_output_length_cntl(flag->field_min_width);
 		print_hex_padding(flag, x, nbr);
 	}
 	else

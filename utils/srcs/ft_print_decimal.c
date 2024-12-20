@@ -26,10 +26,10 @@ void	ft_print_decimal(t_flags *flag, ssize_t nbr)
 	length += (flag->space + flag->plus);
 	if (length > 0)
 		ft_output_length_cntl(length);
-	if (flag->field_min_width > length)
+	if (flag->total_width > length)
 	{
-		flag->field_min_width -= length;
-		ft_output_length_cntl(flag->field_min_width);
+		flag->total_width -= length;
+		ft_output_length_cntl(flag->total_width);
 		print_decimal_padding(flag, nbr);
 	}
 	else
