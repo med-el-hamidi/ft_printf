@@ -10,6 +10,7 @@ int	ft_printf(const char *str, ...)
 	va_start(args, str);
 	ft_output_length_cntl(0);
 	_ft_printf(args, str);
+	va_end(args);
 	return (ft_output_length_cntl(-2));
 }
 
