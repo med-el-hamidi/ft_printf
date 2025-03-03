@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_handle_flags_and_digits.c                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mel-hami <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 20:02:39 by mel-hami          #+#    #+#             */
-/*   Updated: 2024/12/06 17:00:04 by mel-hami         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "srcs.h"
 
 static void	handle_digit(char **str, t_flags *flag);
@@ -19,17 +7,24 @@ static void	_fix_flags(char c, t_flags *flag);
 
 void	ft_handle_flags_and_digits(char **str, t_flags *flag)
 {
+	int	cont;
+
+	cont = 0;
 	while (++(*str) && (is_in_set(**str, " #+-0.") || ft_isdigit(**str)))
 	{
+		cont = 0;
 		if (ft_isdigit(**str) && **str != '0')
 		{
 			handle_digit(str, flag);
-			continue ;
+			cont = 1;
 		}
-		if (**str == '.')
-			handle_dot(str, flag);
-		else
-			handle_flag(**str, flag);
+		if (!cont)
+		{
+			if (**str == '.')
+				handle_dot(str, flag);
+			else
+				handle_flag(**str, flag);
+		}
 	}
 	_fix_flags(**str, flag);
 }

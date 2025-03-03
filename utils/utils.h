@@ -1,18 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mel-hami <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/30 20:54:42 by mel-hami          #+#    #+#             */
-/*   Updated: 2024/11/30 20:54:44 by mel-hami         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef UTILS_H
 # define UTILS_H
-# define FD 1
 # include "../libft/libft.h"
 # define UP_HEX_BASE "0123456789ABCDEF"
 # define DEC_BASE "0123456789"
@@ -28,10 +15,6 @@ typedef struct s_flags
 	int	precision_value;
 	int	field_min_width;
 }	t_flags;
-
-int		ft_output_length_cntl(int flag);
-void	ft_check_bytes_written(int bytes_written);
-int		ft_check_ifwrite_failed(void);
 
 int		is_in_set(char c, char *set);
 void	update_output_length_by_precision(int *length, t_flags *flag);

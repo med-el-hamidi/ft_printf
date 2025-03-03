@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_putnbr_base_fd.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mel-hami <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 19:53:06 by mel-hami          #+#    #+#             */
-/*   Updated: 2024/11/29 19:53:08 by mel-hami         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
 static char	_check_base(char	*base, unsigned int len)
@@ -45,8 +33,6 @@ void	ft_putnbr_base_fd(ssize_t nbr, char *base, int fd)
 	if (nbr < 0)
 	{
 		ft_putchar_fd('-', fd);
-		if (ft_check_ifwrite_failed())
-			return ;
 		nbr *= -1;
 	}
 	if (nbr < len)
@@ -54,8 +40,6 @@ void	ft_putnbr_base_fd(ssize_t nbr, char *base, int fd)
 	else
 	{
 		ft_putnbr_base_fd(nbr / len, base, fd);
-		if (ft_check_ifwrite_failed())
-			return ;
 		ft_putchar_fd(base[nbr % len], fd);
 	}
 }

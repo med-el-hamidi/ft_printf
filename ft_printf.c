@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mel-hami <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 20:28:39 by mel-hami          #+#    #+#             */
-/*   Updated: 2024/11/30 20:43:16 by mel-hami         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 static void	_ft_print_based_on_format(va_list args, t_flags *flag, char c);
@@ -22,7 +10,6 @@ int	ft_printf(const char *str, ...)
 	va_start(args, str);
 	ft_output_length_cntl(0);
 	_ft_printf(args, str);
-	va_end(args);
 	return (ft_output_length_cntl(-2));
 }
 
@@ -54,6 +41,12 @@ static void	_ft_printf(va_list args, const char *str)
 	char	*tmp;
 	t_flags	flag;
 
+	if (write(FD, NULL, 0) == -1)
+	{
+		//ft_putstr_fd("ERROR: STDOUT_FILENO is closed!\n", 2);
+		ft_output_length_cntl(-1);
+		return ;
+	}
 	tmp = (char *)str;
 	while (*tmp)
 	{
@@ -62,14 +55,10 @@ static void	_ft_printf(va_list args, const char *str)
 			ft_bzero(&flag, sizeof(flag));
 			ft_handle_flags_and_digits(&tmp, &flag);
 			_ft_print_based_on_format(args, &flag, *tmp);
-			if (ft_check_ifwrite_failed())
-				return ;
 		}
 		else
 		{
 			ft_putchar_fd(*tmp, FD);
-			if (ft_check_ifwrite_failed())
-				return ;
 			ft_output_length_cntl(1);
 		}
 		if (*tmp)

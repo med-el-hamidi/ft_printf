@@ -1,19 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mel-hami <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 19:57:39 by mel-hami          #+#    #+#             */
-/*   Updated: 2024/11/30 20:45:00 by mel-hami         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <unistd.h>
-# include "../utils/utils.h"
+# include <stdint.h>
+# define FD STDOUT_FILENO
 # define LOW_HEX_BASE "0123456789abcdef"
 
 int		ft_isdigit(int c);
