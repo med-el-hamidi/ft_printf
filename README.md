@@ -33,4 +33,4 @@ After making libftprintf.a with:
 make && make clean
 ```
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/med-el-hamidi/ft_printf/LICENSE.md)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/med-el-hamidi/ft_printf/blob/main/LICENSE.md)
